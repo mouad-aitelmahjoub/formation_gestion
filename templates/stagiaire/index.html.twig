@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Stagiaire Index {% endblock %}
+
+{% block body %}
+    <h2>Stagiaire Index</h2>
+    <ul>
+        {% for stagiaire in stagiaires %}
+            <li>{{stagiaire.id}} </li>
+            <li>{{stagiaire.prenom}} </li>
+            <li>{{stagiaire.nomFamille}} </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% endblock %}

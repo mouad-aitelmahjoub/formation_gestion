@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\StagiaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=StagiaireRepository::class)
@@ -12,6 +13,30 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Stagiaire
 {
+    const SALUTATION = [' ' => NULL,'M.' =>'M.','Mlle.' =>'Mlle.','Mme.' =>'Mme.','Dr.' =>'Dr.'];
+    const DIPLOME = [
+        ' ' => NULL,
+        'Niveau 1 (Diplôme de niveau égal et supérieur à bac+4 ou 5 : master, doctorat...)' => 'Niveau 1 (Diplôme de niveau égal et supérieur à bac+4 ou 5 : master, doctorat...)',
+        'Niveau 2 (Diplôme de niveau bac+3 ou 4 : licence, maîtrise ou équivalent)' =>
+        'Niveau 2 (Diplôme de niveau bac+3 ou 4 : licence, maîtrise ou équivalent)',
+        'Niveau 3 (Diplôme de niveau bac+2 : DUT, BTS, écoles des formations sanitaires ou sociales…)' =>
+        'Niveau 3 (Diplôme de niveau bac+2 : DUT, BTS, écoles des formations sanitaires ou sociales…)',
+        'Niveau 4 (Bac général, technologique ou professionnel, BP, BT ou équivalent, abandon des études)' =>
+        'Niveau 4 (Bac général, technologique ou professionnel, BP, BT ou équivalent, abandon des études)',
+        'Niveau 5 (CAP ou BEP, sortie de 2nd cycle général et technologique avant l’année terminale)' =>
+        'Niveau 5 (CAP ou BEP, sortie de 2nd cycle général et technologique avant l’année terminale)',
+        'Niveau 6 (Sortie en cours de 1er cycle (de la 6e  à la 3e ), abandon CAP, BEP) ' =>
+        'Niveau 6 (Sortie en cours de 1er cycle (de la 6e  à la 3e ), abandon CAP, BEP) ',
+    ];
+    const TEMPSLIBRE = [
+        ' ' => NULL,
+        '08h-10h' => '08h-10h',
+        '10h-12h' => '10h-12h',
+        '12h-14h' => '12h-14h',
+        '14h-16h' => '14h-16h',
+        '16h-18h' => '16h-18h',
+        '18h-20h' => '18h-20h',
+    ];
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -21,76 +46,105 @@ class Stagiaire
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $situation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $nomFamille;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $nomNaissance;
-
+    
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     * @Assert\Email(
+     *     message = " l'email '{{ value }}' n'est pas valide."
+     * )
      */
     private $email;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     * @Assert\Range(
+     *      min = 100000000,
+     *      max = 999999999,
+     *      notInRangeMessage = "Numéro invalide, le N° doit contenir 9 chiffres",
+     * )
      */
     private $mobile;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     * @Assert\Range(
+     *      min = 100000000,
+     *      max = 999999999,
+     *      notInRangeMessage = "Numéro invalide, le N° doit contenir 9 chiffres",
+     * )
      */
     private $fixe;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="date")
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     * @Assert\Type("\DateTimeInterface")
      */
     private $birthday;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $sociale;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $diplome;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $emploi;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $nDossier;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $formation;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $tempsLibre;
 
