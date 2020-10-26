@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Stagiaire Index {% endblock %}
+
+{% block body %}
+	<h4>Stagiaire Show</h4>
+  
+  <div class="card text-center">
+    <div class="card-header">
+      Crée Le: {{stagiaire.createdAt | date('d-m-Y H:i')}} | par: Nom Agent
+    </div>
+    <div class="card-body">
+      <h5 class="card-title display-4">{{stagiaire.situation}} {{stagiaire.prenom}} {{stagiaire.nomFamille}}</h5>
+      <div class="container text-center card-text">
+        <div class="row">
+          <div class="col-md-3 border rounded">
+            <strong>Nom de Naissance :</strong><br>
+            {{stagiaire.nomNaissance}}
+          </div>
+          <div class="col-md-3 border rounded">
+            <strong>Email :</strong><br>
+            {{stagiaire.email}}
+          </div>
+          <div class="col-md-3 border rounded">
+            <strong>N° Fixe :</strong><br>
+            {{stagiaire.fixe}}
+          </div>
+          <div class="col-md-3 border rounded">
+            <strong>N° Mobile :</strong><br>
+            {{stagiaire.mobile}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 border rounded">
+            <strong>Addresse :</strong><br>
+            {{stagiaire.adresse}}
+          </div>
+          <div class="col-md-4 border rounded">
+            <strong>Date de Naissance :</strong><br>
+            {{stagiaire.birthday | date('d-m-Y')}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 border rounded"> 
+            <strong>N°¨Dossier:</strong><br>
+            {{stagiaire.nDossier}} 
+          </div>
+          <div class="col-md-4 border rounded">
+            <strong>N° Securité Sociale :</strong><br>
+            {{stagiaire.sociale}}
+          </div>
+          <div class="col-md-4 border rounded">
+            <strong>Emploi :</strong><br>
+            {{stagiaire.emploi}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-9 border rounded">
+            <strong>Diplome :</strong><br>
+            {{stagiaire.diplome}}
+          </div>
+          <div class="col-md-3 border rounded">
+            <strong>Temps libre :</strong><br>
+            {{stagiaire.tempslibre}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 border rounded">
+          <strong>Formation :</strong><br>
+          {{stagiaire.formation}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 border rounded">
+            <strong>Commentaire :</strong><br>
+            {{stagiaire.comment}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <a class="btn btn-warning btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-edit text-white"></i></a>
+      <a class="btn btn-danger btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-trash-alt"></i></a>				
+    </div>
+</div>
+{% endblock %}

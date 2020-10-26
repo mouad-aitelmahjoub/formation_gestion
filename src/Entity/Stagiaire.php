@@ -13,9 +13,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Stagiaire
 {
-    const SALUTATION = [' ' => NULL,'M.' =>'M.','Mlle.' =>'Mlle.','Mme.' =>'Mme.','Dr.' =>'Dr.'];
+    const SALUTATION = ['M.' =>'M.','Mlle.' =>'Mlle.','Mme.' =>'Mme.','Dr.' =>'Dr.'];
     const DIPLOME = [
-        ' ' => NULL,
         'Niveau 1 (Diplôme de niveau égal et supérieur à bac+4 ou 5 : master, doctorat...)' => 'Niveau 1 (Diplôme de niveau égal et supérieur à bac+4 ou 5 : master, doctorat...)',
         'Niveau 2 (Diplôme de niveau bac+3 ou 4 : licence, maîtrise ou équivalent)' =>
         'Niveau 2 (Diplôme de niveau bac+3 ou 4 : licence, maîtrise ou équivalent)',
@@ -29,7 +28,6 @@ class Stagiaire
         'Niveau 6 (Sortie en cours de 1er cycle (de la 6e  à la 3e ), abandon CAP, BEP) ',
     ];
     const TEMPSLIBRE = [
-        ' ' => NULL,
         '08h-10h' => '08h-10h',
         '10h-12h' => '10h-12h',
         '12h-14h' => '12h-14h',
@@ -173,7 +171,7 @@ class Stagiaire
         return $this->situation;
     }
 
-    public function setSituation(string $situation): self
+    public function setSituation(?string $situation): self
     {
         $this->situation = $situation;
 
@@ -185,7 +183,7 @@ class Stagiaire
         return $this->nomFamille;
     }
 
-    public function setNomFamille(string $nomFamille): self
+    public function setNomFamille(?string $nomFamille): self
     {
         $this->nomFamille = $nomFamille;
 
@@ -197,7 +195,7 @@ class Stagiaire
         return $this->nomNaissance;
     }
 
-    public function setNomNaissance(string $nomNaissance): self
+    public function setNomNaissance(?string $nomNaissance): self
     {
         $this->nomNaissance = $nomNaissance;
 
@@ -209,7 +207,7 @@ class Stagiaire
         return $this->prenom;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setPrenom(?string $prenom): self
     {
         $this->prenom = $prenom;
 
@@ -221,7 +219,7 @@ class Stagiaire
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
@@ -257,7 +255,7 @@ class Stagiaire
         return $this->adresse;
     }
 
-    public function setAdresse(string $adresse): self
+    public function setAdresse(?string $adresse): self
     {
         $this->adresse = $adresse;
 
@@ -269,7 +267,7 @@ class Stagiaire
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 
@@ -293,7 +291,7 @@ class Stagiaire
         return $this->diplome;
     }
 
-    public function setDiplome(string $diplome): self
+    public function setDiplome(?string $diplome): self
     {
         $this->diplome = $diplome;
 
@@ -305,7 +303,7 @@ class Stagiaire
         return $this->emploi;
     }
 
-    public function setEmploi(string $emploi): self
+    public function setEmploi(?string $emploi): self
     {
         $this->emploi = $emploi;
 
@@ -317,7 +315,7 @@ class Stagiaire
         return $this->nDossier;
     }
 
-    public function setNDossier(string $nDossier): self
+    public function setNDossier(?string $nDossier): self
     {
         $this->nDossier = $nDossier;
 
@@ -329,7 +327,7 @@ class Stagiaire
         return $this->formation;
     }
 
-    public function setFormation(string $formation): self
+    public function setFormation(?string $formation): self
     {
         $this->formation = $formation;
 
@@ -341,7 +339,7 @@ class Stagiaire
         return $this->tempsLibre;
     }
 
-    public function setTempsLibre(string $tempsLibre): self
+    public function setTempsLibre(?string $tempsLibre): self
     {
         $this->tempsLibre = $tempsLibre;
 

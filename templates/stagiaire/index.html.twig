@@ -3,31 +3,43 @@
 {% block title %} Stagiaire Index {% endblock %}
 
 {% block body %}
-    <h4>Stagiaire Index</h4>
-    <table class="table table-striped">
-    <thead>
-        <tr>
-        <th scope="col">Nom</th>
-        <th scope="col">Prénom</th>
-        <th scope="col">Date de Naissance</th>
-        <th scope="col">N° Mobile</th>
-        <th scope="col">N° fixe</th>
-        <th scope="col">Ajouter le</th>
-        <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-            {% for stagiaire in stagiaires %}
-            <tr>
-                <th scope="row">{{stagiaire.nomFamille}} </th>
-                <td>{{stagiaire.prenom}} </td>
-                <td>{{stagiaire.birthday | date('d-m-Y')}} </td>
-                <td>{{stagiaire.mobile}} </td>
-                <td>{{stagiaire.fixe}} </td>
-                <td>{{stagiaire.createdAt | date('H:i d-m-Y')}} </td>
-                <td><a class="btn btn-primary" href="/">Voir plus...</a></td>
-            </tr>
-            {% endfor %}
-    </tbody>
-</table>
+	<h1 class="display-6 text-center mb-5">Liste des stagiaires</h1>
+	<table class="table table-striped table-sm table-condensed text-center">
+		<thead>
+			<tr>
+				<th scope="col">---</th>
+				<th scope="col">Prénom</th>
+				<th scope="col">Nom</th>
+				<th scope="col">N° Dossier</th>
+				<th scope="col">Date de Naissance</th>
+				<th scope="col">N° Mobile</th>
+				<th scope="col">N° fixe</th>
+				<th scope="col">Ajouter le</th>
+				<th scope="col">Agent</th>
+				<th scope="col">Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for stagiaire in stagiaires %}
+				<tr>
+					<th scope="row">{{stagiaire.situation}} </th>
+					<td>{{stagiaire.prenom}} </td>
+					<td>{{stagiaire.nomFamille}} </td>
+					<td>{{stagiaire.nDossier}} </td>
+					<td>{{stagiaire.birthday | date('d-m-Y')}} </td>
+					<td>{{stagiaire.mobile}} </td>
+					<td>{{stagiaire.fixe}} </td>
+					<td>{{stagiaire.createdAt | date('H:i d-m-Y')}} </td>
+					<td>Nom d'Agent</td>
+					<td>
+						<div>
+							<a class="btn btn-primary btn-sm" href="{{path("app_stagiaires_show", {id: stagiaire.id})}}"><i class="fas fa-eye"></i></a>
+							<a class="btn btn-warning btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-edit text-white"></i></a>
+							<a class="btn btn-danger btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-trash-alt"></i></a>
+						</div>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 {% endblock %}
