@@ -5,7 +5,64 @@
 {% block body %}
     <h2>Stagiaire Create</h2>
     {{form_start(form)}}
-      {{form_widget(form)}}
+      <div class="row">
+        <div class="col-md-3">
+          {{form_row(form.situation)}}
+        </div>
+        <div class="col-md-3">
+          {{form_row(form.prenom)}}
+        </div>
+        <div class="col-md-3">
+          {{form_row(form.nomFamille)}}
+        </div>
+        <div class="col-md-3">
+          {{form_row(form.nomNaissance)}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          {{form_row(form.adresse)}}
+        </div>
+        <div class="col-md-6">
+          {{form_row(form.birthday)}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          {{form_row(form.email)}}
+        </div>
+        <div class="col-md-4">
+          {{form_row(form.fixe)}}
+        </div>
+        <div class="col-md-4">
+          {{form_row(form.mobile)}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          {{form_row(form.sociale)}}
+        </div>
+        <div class="col-md-8">
+          {{form_row(form.diplome)}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-3">
+          {{form_row(form.emploi)}}
+        </div>
+        <div class="col-md-3">
+          {{form_row(form.formation)}}
+        </div>
+        <div class="col-md-3">
+          {{form_row(form.nDossier)}}
+        </div>
+        <div class="col-md-3">
+          {{form_row(form.tempsLibre)}}
+        </div>
+        <div class="col-md-12">
+          {{form_row(form.comment)}}
+        </div>
+      </div>
       <input type="submit" value="Ajouter Stagiaire" class="btn btn-primary btn-block" formnovalidate>
     {{form_end(form)}}
 {% endblock %}

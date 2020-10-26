@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StagiaireController extends AbstractController
 {
     /**
-     * @Route("/stagiaires", name="app_stagiaires_index")
+     * @Route("/", name="app_stagiaires_index")
      */
     public function index(StagiaireRepository $stagiaireRepository)
     {

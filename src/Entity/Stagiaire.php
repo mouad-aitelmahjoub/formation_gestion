@@ -158,6 +158,11 @@ class Stagiaire
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $comment;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -378,5 +383,17 @@ class Stagiaire
         }
 
         $this->setUpdatedAt(new \DateTimeImmutable);
+    }
+
+    public function getComment(): ?string
+    {
+        return $this->comment;
+    }
+
+    public function setComment(?string $comment): self
+    {
+        $this->comment = $comment;
+
+        return $this;
     }
 }

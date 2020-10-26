@@ -3,13 +3,31 @@
 {% block title %} Stagiaire Index {% endblock %}
 
 {% block body %}
-    <h2>Stagiaire Index</h2>
-    <ul>
-        {% for stagiaire in stagiaires %}
-            <li>{{stagiaire.id}} </li>
-            <li>{{stagiaire.prenom}} </li>
-            <li>{{stagiaire.nomFamille}} </li>
-            <hr>
-        {% endfor %}
-    </ul>
+    <h4>Stagiaire Index</h4>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">Nom</th>
+        <th scope="col">Prénom</th>
+        <th scope="col">Date de Naissance</th>
+        <th scope="col">N° Mobile</th>
+        <th scope="col">N° fixe</th>
+        <th scope="col">Ajouter le</th>
+        <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <th scope="row">{{stagiaire.nomFamille}} </th>
+                <td>{{stagiaire.prenom}} </td>
+                <td>{{stagiaire.birthday | date('d-m-Y')}} </td>
+                <td>{{stagiaire.mobile}} </td>
+                <td>{{stagiaire.fixe}} </td>
+                <td>{{stagiaire.createdAt | date('H:i d-m-Y')}} </td>
+                <td><a class="btn btn-primary" href="/">Voir plus...</a></td>
+            </tr>
+            {% endfor %}
+    </tbody>
+</table>
 {% endblock %}
