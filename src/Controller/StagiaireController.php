@@ -37,7 +37,7 @@ class StagiaireController extends AbstractController
         {
             $em->persist($stagiaire);
             $em->flush();
-            $this->addFlash('success', 'Stagiaire Enregistrer!');
+            $this->addFlash('success', 'Stagiaire Enregistrer! &#128516;');
             return $this->redirectToRoute('app_stagiaires_index');
         }
 
@@ -65,7 +65,7 @@ class StagiaireController extends AbstractController
         if($form->isSubmitted() && $form->isValid())
         {
             $em->flush();
-            $this->addFlash('info', 'Modification Enregistrer!');
+            $this->addFlash('info', 'Modification Enregistrer! &#128516;');
             return $this->redirectToRoute('app_stagiaires_index');
         }
 
@@ -82,7 +82,7 @@ class StagiaireController extends AbstractController
         $em->remove($stagiaire);
         $em->flush();
 
-        $this->addFlash('danger', 'Stagiaire supprimer! ');
+        $this->addFlash('danger', 'Stagiaire supprimer! &#128521;');
         
         return $this->redirectToRoute('app_stagiaires_index');
     }
