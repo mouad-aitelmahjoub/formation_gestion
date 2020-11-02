@@ -45,7 +45,7 @@
 							<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
 								<i class="fas fa-trash-alt"></i>
 							</button>
-							{% include 'inc/_delete_modal.html.twig'  with {'stagiaire' : stagiaire} only %}
+							{% include 'inc/_delete_modal.html.twig'  with {'name' : 'stagiaire', 'variable' : stagiaire} only %}
 						</div>
 					</td>
 				</tr>

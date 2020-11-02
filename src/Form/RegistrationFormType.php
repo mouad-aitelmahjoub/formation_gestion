@@ -21,13 +21,15 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('username',TextType::class, ['label'=>'Login:'])
             ->add('name',TextType::class, ['label'=>'Nom et prénom:'])
-            ->add('roles',ChoiceType::class, ['choices'  => [
-                'Admin' => 'ROLE_ADMIN',
-                'Agent' => 'ROLE_USER',
-                ], 
+            ->add('roles',ChoiceType::class, [
+                'choices'  => [
+                    'Agent' => 'ROLE_AGENT',
+                    'Admin' => 'ROLE_ADMIN',
+                ],
                 'expanded' => true, // render check-boxes
                 'multiple' => true,
-                'label'=>'Type:'])
+                'label'=>'Type:'
+                ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller

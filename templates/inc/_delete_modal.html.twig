@@ -8,11 +8,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>&#128533; Voulez-vous vraiment supprimer ce stagiaire?</p>
+        <p>&#128533; Voulez-vous vraiment supprimer ce {{name}}?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Non</button>
-        <form  action="{{path("app_stagiaires_delete", {id: stagiaire.id})}}" method="post" style="display :inline-block">
+        <form  action="{{path("app_"~ name ~"s_delete", {id: variable.id})}}" method="post" style="display :inline-block">
           <button  type="submit" class="btn btn-danger">Oui, supprimer le!</button>
         </form>
       </div>

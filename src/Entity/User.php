@@ -36,7 +36,6 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
-     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      * @Assert\Length(
      *      min = 6,
      *      minMessage = "Le mot de passe doit contenir au moins 6 caractéres",
@@ -79,7 +78,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        //$roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
