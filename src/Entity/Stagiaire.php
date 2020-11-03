@@ -161,6 +161,11 @@ class Stagiaire
      */
     private $comment;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stagiaires")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -391,6 +396,18 @@ class Stagiaire
     public function setComment(?string $comment): self
     {
         $this->comment = $comment;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

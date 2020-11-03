@@ -1,0 +1,32 @@
+<!-- Modal -->
+			<div class="modal fade" id="searchFormModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Filter <i class="fas fa-filter"></i></h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<div class="container">
+								{{form_start(searchForm)}}
+									<div class="row">
+										<div class="col-md-6">
+											{{form_row(searchForm.start)}}
+										</div>
+										<div class="col-md-6">
+											{{form_row(searchForm.end)}}
+										</div>
+									</div>
+									{{form_widget(searchForm)}}
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Femer</button>
+							<input type="submit" value="Filter!" class="btn btn-primary" formnovalidate>
+							{{form_end(searchForm)}}
+						</div>
+					</div>
+				</div>
+			</div>

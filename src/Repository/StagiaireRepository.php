@@ -19,6 +19,36 @@ class StagiaireRepository extends ServiceEntityRepository
         parent::__construct($registry, Stagiaire::class);
     }
 
+    /**
+     * @param $start
+     * @param $end
+     * @param $id
+     * @return Stagiaire[]
+     */
+    public function findAllByStartandEndandId($start,$end,$id): array
+    {
+        $start->modify('00:00');
+        $end->modify('23:59');
+
+        // automatically knows to select Stagiaire
+        // the "p" is an alias you'll use in the rest of the query
+        
+            $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.createdAt >= :start')
+            ->andWhere('p.createdAt <= :end')
+            ->setParameter('start', $start)
+            ->setParameter('end', $end);
+            if ($id != null) {
+                $qb->andWhere('p.user = :id')
+                    ->setParameter('id', $id);
+            }
+            $qb->orderBy('p.createdAt', 'DESC');
+
+            $query = $qb->getQuery();
+
+            return $query->execute();
+    }
+
     // /**
     //  * @return Stagiaire[] Returns an array of Stagiaire objects
     //  */

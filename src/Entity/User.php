@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -48,6 +50,16 @@ class User implements UserInterface
      * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
      */
     private $name;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Stagiaire::class, mappedBy="user")
+     */
+    private $stagiaires;
+
+    public function __construct()
+    {
+        $this->stagiaires = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -130,6 +142,37 @@ class User implements UserInterface
     public function setName(?string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Stagiaire[]
+     */
+    public function getStagiaires(): Collection
+    {
+        return $this->stagiaires;
+    }
+
+    public function addStagiaire(Stagiaire $stagiaire): self
+    {
+        if (!$this->stagiaires->contains($stagiaire)) {
+            $this->stagiaires[] = $stagiaire;
+            $stagiaire->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStagiaire(Stagiaire $stagiaire): self
+    {
+        if ($this->stagiaires->contains($stagiaire)) {
+            $this->stagiaires->removeElement($stagiaire);
+            // set the owning side to null (unless already changed)
+            if ($stagiaire->getUser() === $this) {
+                $stagiaire->setUser(null);
+            }
+        }
 
         return $this;
     }
