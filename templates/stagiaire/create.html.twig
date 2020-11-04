@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} Ajoutez un Stagiaire {% endblock %}
+{% block title %} Ajouter un Stagiaire {% endblock %}
 
 {% block body %}
-    <h2>Stagiaire Create</h2>
+  <h2 class="text-center mb-5">
+      <span class="badge badge-secondary">Ajouter un stagiaire:</span>
+  </h2>  
     {{form_start(form)}}
       <div class="row">
         <div class="col-md-3">
@@ -63,6 +65,6 @@
           {{form_row(form.comment)}}
         </div>
       </div>
-      <input type="submit" value="Ajouter Stagiaire" class="btn btn-primary btn-block" formnovalidate>
+      <input type="submit" value="Enregister" class="btn btn-primary btn-block" formnovalidate>
     {{form_end(form)}}
 {% endblock %}

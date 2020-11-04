@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}+ Utilisateur{% endblock %}
+{% block title %}Modifier utilisateur{% endblock %}
 
 {% block body %}
 	{% for flashError in app.flashes('verify_email_error') %}
 			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
 
-	<h1 class="text-center">Modifier utilisateur</h1>
-	<div class="container d-flex justify-content-center">
+	<h2 class="text-center mb-5">
+		<span class="badge badge-secondary">Modifier utilisateur:</span>
+  </h2>	<div class="container d-flex justify-content-center">
 		{{ form_start(editForm) }}
 			<div class="row">
 				<div class="col-md-6">
@@ -22,7 +23,7 @@
 				label: 'Mot de Passe:'
 			}) }}
 			{{ form_row(editForm.roles) }}
-      <input type="submit" value="Ajouter utilisateur" class="btn btn-primary btn-block" formnovalidate>
+      <input type="submit" value="Enregister les modifications" class="btn btn-primary btn-block" formnovalidate>
 		{{ form_end(editForm) }}
 	</div>
 {% endblock %}

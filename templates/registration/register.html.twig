@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}+ Utilisateur{% endblock %}
+{% block title %}Ajouter un utilisateur{% endblock %}
 
 {% block body %}
 	{% for flashError in app.flashes('verify_email_error') %}
 			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 	{% endfor %}
 
-	<h1 class="text-center">Ajouter un nouveau utilisateur</h1>
+	<h2 class="text-center mb-5">
+      <span class="badge badge-secondary">Ajouter un utilisateur:</span>
+  </h2>
 	<div class="container d-flex justify-content-center">
 		{{ form_start(registrationForm) }}
 			<div class="row">

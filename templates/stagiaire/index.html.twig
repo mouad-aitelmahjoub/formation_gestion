@@ -17,6 +17,22 @@
 			</button>
 			{% include 'inc/_search_form_modal.html.twig'  with {'searchForm' : searchForm} only %}
 
+	<div class="container">
+	<span class="badge badge-info">
+		{{ stagiaires | length}} Stagiaires
+	</span>
+	<span class="badge badge-info">
+		A partir de : {{query.start | date('d-M-Y')}}
+	</span>
+	<span class="badge badge-info">
+		Jusqu'a : {{query.end | date('d-M-Y')}}
+	</span>
+	<span class="badge badge-info">
+		{# {{query.agent | default('Tous les agents')}} #}
+		Agent : {{ agentsNamesadnIDs[query.agent] }}
+	</span>
+	</div>
+
 	<table class="table table-striped table-sm table-condensed text-center">
 		<thead>
 			<tr>
@@ -47,11 +63,13 @@
 					<td>
 						<div>
 							<a class="btn btn-primary btn-sm" href="{{path("app_stagiaires_show", {id: stagiaire.id})}}"><i class="fas fa-eye"></i></a>
-							<a class="btn btn-warning btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-edit text-white"></i></a>
-							<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-								<i class="fas fa-trash-alt"></i>
-							</button>
-							{% include 'inc/_delete_modal.html.twig'  with {'name' : 'stagiaire', 'variable' : stagiaire} only %}
+							{% if is_granted('ROLE_ADMIN') %}
+								<a class="btn btn-warning btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-edit text-white"></i></a>
+								<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
+									<i class="fas fa-trash-alt"></i>
+								</button>
+								{% include 'inc/_delete_modal.html.twig'  with {'name' : 'stagiaire', 'variable' : stagiaire} only %}
+							{% endif %}
 						</div>
 					</td>
 				</tr>

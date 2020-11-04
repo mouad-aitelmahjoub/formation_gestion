@@ -24,10 +24,11 @@ class StagiaireController extends AbstractController
 		$isAdmin = $currentUser->getRoles() == ['ROLE_ADMIN'] ? true : false;
 		
 		if ($isAdmin) {
-			$userID = null;
+			$userID = 0;
 		}
 		else{
 			$userID = $currentUser->getID();
+			$agentsNamesadnIDs = [$currentUser->getName() => $userID];
 		}
 
 		//Setting The Default Data
@@ -46,7 +47,7 @@ class StagiaireController extends AbstractController
 
 						//an Array of agents names & Ids
 						$agentsNamesadnIDs = [
-							'Choisissez un agent' => NULL,
+							'Tous les agents' => 0,
 						];
 						foreach ($agents as $agent ) {
 							$agentsNamesadnIDs = $agentsNamesadnIDs + [$agent->getName() => $agent->getId()];
@@ -64,10 +65,13 @@ class StagiaireController extends AbstractController
 			//dd($query);
 		}
 		$stagiaires = $stagiaireRepository->findAllByStartandEndandId($query['start'],$query['end'],$query['agent']);
-		
+		$NamesAndIds = array_flip($agentsNamesadnIDs);
+
 		return $this->render('stagiaire/index.html.twig',[
 			'stagiaires' => $stagiaires,
 			"searchForm"=>$form->createView(),
+			"query" => $query,
+			"agentsNamesadnIDs"=>$NamesAndIds,
 		]);
 	}
 	/**
@@ -106,6 +110,8 @@ class StagiaireController extends AbstractController
 	 */
 	public function edit(Stagiaire $stagiaire, Request $request, EntityManagerInterface $em)
 	{
+		//$this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 		$form = $this->createForm(StagiaireType::class, $stagiaire);
 
 		$form->handleRequest($request);
@@ -127,6 +133,8 @@ class StagiaireController extends AbstractController
 	 */
 	public function delete(Stagiaire $stagiaire, EntityManagerInterface $em)
 	{
+		//$this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 		$em->remove($stagiaire);
 		$em->flush();
 

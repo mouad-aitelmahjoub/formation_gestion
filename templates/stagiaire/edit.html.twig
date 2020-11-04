@@ -3,66 +3,69 @@
 {% block title %} Modifier un Stagiaire {% endblock %}
 
 {% block body %}
-    <h2>Stagiaire Edit</h2>
-    {{form_start(form)}}
-      <div class="row">
-        <div class="col-md-3">
-          {{form_row(form.situation)}}
-        </div>
-        <div class="col-md-3">
-          {{form_row(form.prenom)}}
-        </div>
-        <div class="col-md-3">
-          {{form_row(form.nomFamille)}}
-        </div>
-        <div class="col-md-3">
-          {{form_row(form.nomNaissance)}}
-        </div>
+  <h2 class="text-center mb-5">
+    <span class="badge badge-secondary">Modifier les infos du stagiaire:</span>
+  </h2>
+  
+  {{form_start(form)}}
+    <div class="row">
+      <div class="col-md-3">
+        {{form_row(form.situation)}}
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          {{form_row(form.adresse)}}
-        </div>
-        <div class="col-md-6">
-          {{form_row(form.birthday)}}
-        </div>
+      <div class="col-md-3">
+        {{form_row(form.prenom)}}
       </div>
-      <div class="row">
-        <div class="col-md-4">
-          {{form_row(form.email)}}
-        </div>
-        <div class="col-md-4">
-          {{form_row(form.fixe)}}
-        </div>
-        <div class="col-md-4">
-          {{form_row(form.mobile)}}
-        </div>
+      <div class="col-md-3">
+        {{form_row(form.nomFamille)}}
       </div>
-      <div class="row">
-        <div class="col-md-4">
-          {{form_row(form.sociale)}}
-        </div>
-        <div class="col-md-8">
-          {{form_row(form.diplome)}}
-        </div>
+      <div class="col-md-3">
+        {{form_row(form.nomNaissance)}}
       </div>
-      <div class="row">
-        <div class="col-md-3">
-          {{form_row(form.emploi)}}
-        </div>
-        <div class="col-md-3">
-          {{form_row(form.formation)}}
-        </div>
-        <div class="col-md-3">
-          {{form_row(form.nDossier)}}
-        </div>
-        <div class="col-md-3">
-          {{form_row(form.tempsLibre)}}
-        </div>
-        <div class="col-md-12">
-          {{form_row(form.comment)}}
-        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {{form_row(form.adresse)}}
       </div>
-      <input type="submit" value="Ajouter Stagiaire" class="btn btn-primary btn-block" formnovalidate>
-    {{form_end(form)}}
+      <div class="col-md-6">
+        {{form_row(form.birthday)}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        {{form_row(form.email)}}
+      </div>
+      <div class="col-md-4">
+        {{form_row(form.fixe)}}
+      </div>
+      <div class="col-md-4">
+        {{form_row(form.mobile)}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        {{form_row(form.sociale)}}
+      </div>
+      <div class="col-md-8">
+        {{form_row(form.diplome)}}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        {{form_row(form.emploi)}}
+      </div>
+      <div class="col-md-3">
+        {{form_row(form.formation)}}
+      </div>
+      <div class="col-md-3">
+        {{form_row(form.nDossier)}}
+      </div>
+      <div class="col-md-3">
+        {{form_row(form.tempsLibre)}}
+      </div>
+      <div class="col-md-12">
+        {{form_row(form.comment)}}
+      </div>
+    </div>
+    <input type="submit" value="Enregistrer les modifications" class="btn btn-primary btn-block" formnovalidate>
+  {{form_end(form)}}
 {% endblock %}
