@@ -61,16 +61,14 @@
 					<td>{{stagiaire.createdAt | date('d-m-Y')}} À {{stagiaire.createdAt | date('H:i')}} </td>
 					<td>{{stagiaire.user.name}}</td>
 					<td>
-						<div>
-							<a class="btn btn-primary btn-sm" href="{{path("app_stagiaires_show", {id: stagiaire.id})}}"><i class="fas fa-eye"></i></a>
-							{% if is_granted('ROLE_ADMIN') %}
+						<a class="btn btn-primary btn-sm" href="{{path("app_stagiaires_show", {id: stagiaire.id})}}"><i class="fas fa-eye"></i></a>
+						{% if is_granted('ROLE_ADMIN') %}
 								<a class="btn btn-warning btn-sm" href="{{path("app_stagiaires_edit", {id: stagiaire.id})}}"><i class="fas fa-edit text-white"></i></a>
 								<button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
 									<i class="fas fa-trash-alt"></i>
 								</button>
 								{% include 'inc/_delete_modal.html.twig'  with {'name' : 'stagiaire', 'variable' : stagiaire} only %}
 							{% endif %}
-						</div>
 					</td>
 				</tr>
 			{% endfor %}

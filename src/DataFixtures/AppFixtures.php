@@ -53,6 +53,9 @@ class AppFixtures extends Fixture
                             ->setTempsLibre($faker->randomElement(array_values($tempsLibre)))
                             ->setComment($faker->text)
                             ->setCreatedAt($faker->dateTimeBetween($startDate = '-10 days', $endDate = '+10 days', $timezone = "Africa/Casablanca" ))
+                            ->setRdvFormateur($faker->dateTimeBetween($startDate = 'now', $endDate = '+10 days', $timezone = "Africa/Casablanca" ))
+                            ->setPrixFormation($faker->randomFloat($nbMaxDecimals = 2, $min = 1000, $max = 1500))
+                            ->setFondDisponible($faker->randomFloat($nbMaxDecimals = 2, $min = 1500, $max = 2000))
                             ->setUser($user)
                 ;
     
@@ -60,7 +63,16 @@ class AppFixtures extends Fixture
             }
         }
 
+        $user = new User();
 
+        $user->setUsername('admin')
+                ->setroles(['ROLE_ADMIN'])
+                ->setpassword($this->encoder->encodePassword($user,'123456'))
+                ->setName($faker->name)
+        ;
+        
+        $manager->persist($user);
+        
         $manager->flush();
     }
 }

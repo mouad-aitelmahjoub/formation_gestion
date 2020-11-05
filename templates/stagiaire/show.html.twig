@@ -65,6 +65,20 @@
           </div>
         </div>
         <div class="row">
+          <div class="col-md-4 border rounded">
+            <strong><i class="fas fa-clock"></i> Rdv Formateur:</strong><br>
+            {{stagiaire.rdvFormateur | date('H:i d-m-Y')}}
+          </div>
+          <div class="col-md-4 border rounded">
+            <strong><i class="fas fa-euro-sign"></i> Fonds disponibles :</strong><br>
+            {{stagiaire.fondDisponible}}
+          </div>
+          <div class="col-md-4 border rounded">
+            <strong><i class="fas fa-euro-sign"></i> Prix Formation :</strong><br>
+            {{stagiaire.prixFormation}}
+          </div>
+        </div>
+        <div class="row">
           <div class="col-md-12 border rounded">
           <strong><i class="fas fa-school"></i> Formation :</strong><br>
           {{stagiaire.formation}}

@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class StagiaireType extends AbstractType
@@ -33,6 +34,9 @@ class StagiaireType extends AbstractType
             ->add('nDossier',TextType::class,['label'=>'N° de Dossier:'])
             ->add('formation',TextType::class,['label'=>'Formation:'])
             ->add('tempsLibre', ChoiceType::class, ['choices'  => $tempsLibre, 'label'=>'Temps libre:'])
+            ->add('rdvFormateur',DateTimeType::class,['widget' => 'single_text','label'=>'Rdv Formateur:'])
+            ->add('fondDisponible',NumberType::class,['label'=>'Fonds Disponible:'])
+            ->add('prixFormation',NumberType::class,['label'=>'Prix Formation:'])
             ->add('comment',TextareaType::class,['label'=>'Commentaire:'])
         ;
     }

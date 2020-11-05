@@ -2,30 +2,35 @@
 
 namespace App\Entity;
 
-use App\Repository\StagiaireRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\StagiaireRepository;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=StagiaireRepository::class)
  * @ORM\Table(name="stagiaires")
+ * @UniqueEntity(fields={"sociale"}, message="Ce Stagiaire a déjà une formation")
  * @ORM\HasLifecycleCallbacks
  */
 class Stagiaire
 {
     const SALUTATION = ['M.' =>'M.','Mlle.' =>'Mlle.','Mme.' =>'Mme.','Dr.' =>'Dr.'];
     const DIPLOME = [
-        'Niveau 1 (Diplôme de niveau égal et supérieur à bac+4 ou 5 : master, doctorat...)' => 'Niveau 1 (Diplôme de niveau égal et supérieur à bac+4 ou 5 : master, doctorat...)',
-        'Niveau 2 (Diplôme de niveau bac+3 ou 4 : licence, maîtrise ou équivalent)' =>
-        'Niveau 2 (Diplôme de niveau bac+3 ou 4 : licence, maîtrise ou équivalent)',
-        'Niveau 3 (Diplôme de niveau bac+2 : DUT, BTS, écoles des formations sanitaires ou sociales…)' =>
-        'Niveau 3 (Diplôme de niveau bac+2 : DUT, BTS, écoles des formations sanitaires ou sociales…)',
-        'Niveau 4 (Bac général, technologique ou professionnel, BP, BT ou équivalent, abandon des études)' =>
-        'Niveau 4 (Bac général, technologique ou professionnel, BP, BT ou équivalent, abandon des études)',
-        'Niveau 5 (CAP ou BEP, sortie de 2nd cycle général et technologique avant l’année terminale)' =>
-        'Niveau 5 (CAP ou BEP, sortie de 2nd cycle général et technologique avant l’année terminale)',
-        'Niveau 6 (Sortie en cours de 1er cycle (de la 6e  à la 3e ), abandon CAP, BEP) ' =>
-        'Niveau 6 (Sortie en cours de 1er cycle (de la 6e  à la 3e ), abandon CAP, BEP) ',
+        'Diplôme national du Brevet ou Sans diplôme' => 
+        'Diplôme national du Brevet ou Sans diplôme',
+        'CAP ou BEP, ou Diplôme ou titre à finalité professionnelle de niveau équivalent' =>
+        'CAP ou BEP, ou Diplôme ou titre à finalité professionnelle de niveau équivalent',
+        'Baccalauréat (général, technologique ou professionnel), ou Diplôme ou titre à finalité professionnelle de niveau équivalent' =>
+        'Baccalauréat (général, technologique ou professionnel), ou Diplôme ou titre à finalité professionnelle de niveau équivalent',
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+2 (DUT, BTS, DEUG)' =>
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+2 (DUT, BTS, DEUG)',
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+3 (Licence) ou Bac+4 (Maîtrise, Master 1)' =>
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+3 (Licence) ou Bac+4 (Maîtrise, Master 1)',
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+5  (Master, DEA, DESS, diplôme d\'ingénieur)' =>
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+5  (Master, DEA, DESS, diplôme d\'ingénieur)',
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+8 (Doctorat)' =>
+        'Diplôme ou titre à finalité professionnelle de niveau Bac+8 (Doctorat)',
     ];
     const TEMPSLIBRE = [
         '08h-10h' => '08h-10h',
@@ -165,6 +170,24 @@ class Stagiaire
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="stagiaires")
      */
     private $user;
+
+    /**
+     * @ORM\Column(type="datetime")
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     */
+    private $rdvFormateur;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     */
+    private $fondDisponible;
+
+    /**
+     * @ORM\Column(type="float")
+     * @Assert\NotBlank(message="cette valeur ne doit pas être vide.")
+     */
+    private $prixFormation;
 
     public function getId(): ?int
     {
@@ -408,6 +431,42 @@ class Stagiaire
     public function setUser(?User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getRdvFormateur(): ?\DateTimeInterface
+    {
+        return $this->rdvFormateur;
+    }
+
+    public function setRdvFormateur(?\DateTimeInterface $rdvFormateur): self
+    {
+        $this->rdvFormateur = $rdvFormateur;
+
+        return $this;
+    }
+
+    public function getFondDisponible(): ?float
+    {
+        return $this->fondDisponible;
+    }
+
+    public function setFondDisponible(?float $fondDisponible): self
+    {
+        $this->fondDisponible = $fondDisponible;
+
+        return $this;
+    }
+
+    public function getPrixFormation(): ?float
+    {
+        return $this->prixFormation;
+    }
+
+    public function setPrixFormation(?float $prixFormation): self
+    {
+        $this->prixFormation = $prixFormation;
 
         return $this;
     }
