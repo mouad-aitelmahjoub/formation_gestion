@@ -16,7 +16,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class StagiaireController extends AbstractController
 {
 	/**
-	 * @Route("/", name="app_stagiaires_index")
+	 * @Route("/stagiaires/index", name="app_stagiaires_index")
 	 */
 	public function index(Request $request, StagiaireRepository $stagiaireRepository, UserRepository $userRepository)
 	{   
@@ -87,6 +87,7 @@ class StagiaireController extends AbstractController
 
 		if($form->isSubmitted() && $form->isValid())
 		{
+			$stagiaire->setUser($this->getUser());
 			$em->persist($stagiaire);
 			$em->flush();
 			$this->addFlash('success', 'Stagiaire Enregistrer! &#128516;');
