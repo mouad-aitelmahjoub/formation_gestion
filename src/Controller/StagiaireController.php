@@ -103,6 +103,11 @@ class StagiaireController extends AbstractController
 	 */
 	public function show(Stagiaire $stagiaire)
 	{
+		$currentUser = $this->getUser();
+		if ($currentUser != $stagiaire->getUser() AND $currentUser->getRoles() != ['ROLE_ADMIN']  ) {
+			$this->addFlash('danger', 'Vous ne pouvez pas accéder à ce stagiaire! &#128553;');
+			return $this->redirectToRoute('app_stagiaires_index');
+		}
 		return $this->render('stagiaire/show.html.twig', compact('stagiaire'));
 	}
 

@@ -44,7 +44,9 @@
 				<th scope="col">N° Mobile</th>
 				<th scope="col">N° fixe</th>
 				<th scope="col">Ajouter le</th>
-				<th scope="col">Agent</th>
+				{% if is_granted('ROLE_ADMIN') %}
+					<th scope="col">Agent</th>
+				{% endif %}
 				<th scope="col">Actions</th>
 			</tr>
 		</thead>
@@ -59,7 +61,9 @@
 					<td>{{stagiaire.mobile}} </td>
 					<td>{{stagiaire.fixe}} </td>
 					<td>{{stagiaire.createdAt | date('d-m-Y')}} À {{stagiaire.createdAt | date('H:i')}} </td>
-					<td>{{stagiaire.user.name}}</td>
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>{{stagiaire.user.name}}</td>
+					{% endif %}
 					<td>
 						<a class="btn btn-primary btn-sm" href="{{path("app_stagiaires_show", {id: stagiaire.id})}}"><i class="fas fa-eye"></i></a>
 						{% if is_granted('ROLE_ADMIN') %}
